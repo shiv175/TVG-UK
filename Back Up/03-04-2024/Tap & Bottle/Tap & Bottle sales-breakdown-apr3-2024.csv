@@ -1,0 +1,9 @@
+Sales Category,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+Wine,,66,879.58,0,879.58,175.92,
+Wine,T&B Public,66,879.58,0,879.58,175.92,
+Food,,11,145.01,0,145.01,28.99,
+Food,T&B Public,11,145.01,0,145.01,28.99,
+Spirits,,7,130,0,130,26,
+Spirits,T&B Public,7,130,0,130,26,
+Bottled Beer,,1,5.83,0,5.83,1.17,
+Bottled Beer,T&B Public,1,5.83,0,5.83,1.17,

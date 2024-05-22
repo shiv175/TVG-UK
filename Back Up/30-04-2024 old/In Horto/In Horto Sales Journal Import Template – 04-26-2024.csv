@@ -1,0 +1,303 @@
+﻿DONOTIMPORT,JOURNAL,DATE,REVERSEDATE,DESCRIPTION,REFERENCE_NO,LINE_NO,ACCT_NO,LOCATION_ID,DEPT_ID,DOCUMENT,MEMO,DEBIT,CREDIT,SOURCEENTITY,CURRENCY,EXCH_RATE_DATE,EXCH_RATE_TYPE_ID,EXCHANGE_RATE,STATE,ALLOCATION_ID,BILLABLE,TAXIMPLICATIONS,TAXSOLUTIONID,TAX_VENDORID,TAX_CUSTOMERID,TAX_CONTACTID,TAX_DETAILID,TAX_AMOUNT,GLENTRY_CUSTOMERID,GLENTRY_VENDORID,GLENTRY_PROJECTID,GLENTRY_ITEMID,GLENTRY_EMPLOYEEID,GLENTRY_CLASSID,TAX_LINE_NO
+"#
+Any row which starts with a # will be ignored during import","Field Name: JOURNAL
+UI Field Name: Journal
+Type: Character 
+Length: 4
+Default Value: None
+Dependencies: None
+Required: Yes
+Editable: Yes
+","Field Name: DATE
+UI Field Name: Date
+Type: Date
+Length: 24
+Default Value: Current Date
+Valid Values: Any valid date format
+Dependencies: None
+Required: Yes
+Editable: Yes
+","Field name: REVERSEDATE
+UI Field Name: Reverse Date
+Type: Date
+Length: 24
+Default Value: None
+Valid Values: Any valid date format
+Dependencies: None
+Required: No
+Editable: Yes","Field Name: DESCRIPTION
+UI Field Name: Description
+Type: Character 
+Length: 80
+Default Value: None
+Valid Values: Alphanumeric and underscore
+Dependencies: None
+Required: Yes
+Editable: Yes
+","Field Name: REFERENCE_NO
+UI Field Name: Reference Number
+Type: Character
+Length: 20
+Default Value: None
+Valid Values: Any
+Dependencies: None
+Required: No
+Editable: N/A
+Notes: You may not have duplicate numbers within any company. In MEGA companies, two entity companies may use the same number.","Field Name: LINE_NO
+UI Field Name: No field name as such. These are the line numbers on the left side of the transaction area.
+Type: Number
+Length: Any
+Default Value: None
+Valid Values: Positive integer
+Dependencies: Start with 1 for the first line of a transaction, and increment by one for each subsequent line
+Required: Yes
+Editable: No
+","Field Name: ACCT_NO
+UI Field Name: Account
+Type: Character 
+Length: 24
+Default Value: None
+Valid Values: Any; Must conform to primary/sub account specification in Company > Setup: Company Info
+Dependencies: None
+Required: Yes
+Editable: Yes
+","Field Name: LOCATION_ID
+UI Field Name: Location
+Type: Character 
+Length: 20
+Default Value: None
+Valid Values: Alphanumeric and underscore
+Dependencies: Refers to a valid location
+Required: No
+Editable: Yes
+","Field Name: DEPT_ID
+UI Field Name: Department
+Type: Character 
+Length: 20
+Default Value: None
+Valid Values: Alphanumeric and underscore
+Dependencies: Refers to a valid department
+Required: No
+Editable: Yes
+","Field Name: DOCUMENT
+UI Field Name: Document
+Type: Character 
+Length: 30
+Default Value: None
+Valid Values: Any
+Dependencies: None
+Required: No
+Editable: Yes
+","Field Name: MEMO
+UI Field Name: Memo
+Type: Character 
+Length: 1000
+Default Value: None
+Valid Values: Any
+Dependencies: None
+Required: No
+Editable: Yes
+","Field Name: DEBIT
+UI Field Name: Debit
+Type: NUMBER 
+Length: 38,2
+Default Value: None
+Valid Values: Any number
+Dependencies: None
+Required: Yes, if CREDIT amount not present
+Editable: Yes
+Notes: A negative number is treated as a credit.
+","Field Name: CREDIT
+UI Field Name: Credit
+Type: NUMBER 
+Length: 38,2
+Default Value: None
+Valid Values: Any number
+Dependencies: None
+Required: Yes, if DEBIT amount is not present
+Editable: Yes
+Notes: A negative number is treated as a debit.
+","Field Name: SOURCEENTITY
+UI Field Name: Source Entity
+Type: Character 
+Length: 20
+Default Value: None
+Valid Values: Alphanumeric and underscore
+Dependencies: Refers to a valid location
+Required: Only when the option to auto-create inter-entity transactions is enabled for journal entries and the  journal entry is not balanced by location.
+Editable: Yes
+","Field Name: CURRENCY
+UI Field Name: Currency
+Type: Character
+Length: 3
+Default Value: Base Currency
+Valid Values: Any defined currency, such as USD or EUR; blank denotes base currency
+Dependencies: Must reference a previously defined currency
+Required: No
+Editable: Yes
+Notes: Use only in multi-currency companies. This field defines the transaction currency. If no field is defined here, the system uses base currency.","Field Name: EXCH_RATE_DATE
+UI Field Name: Exchange Rate Date
+Type: Date
+Length: 10
+Default Value: Today
+Valid Values: Any valid date format
+Dependencies: None
+Required: Yes, unless you provide the EXCHANGE_RATE
+Editable: Yes
+Notes: Use only in multi-currency companies. This field determines the exchange rate as of this date.","Field Name: EXCH_RATE_TYPE_ID
+UI Field Name: Exchange Rate Type
+Type: Character
+Length: 40
+Default Value: Intacct Daily Rate, unless a custom exchange rate is defined as the default
+Valid Values: Alphanumeric and underscore
+Dependencies: Must reference a previously defined exchange rate type
+Required: No
+Editable: Yes
+Notes: Use only in multi-currency companies. Defines an optional custom exchange rate type. The system uses the Intacct Daily rate if no optional one is defined here.","Field Name: EXCHANGE_RATE
+UI Field Name: Exchange Rate
+Type: Number
+Length: 17, not including decimal point
+Default Value: Defaults to the exchange rate of the CURRENCY on the EXCH_RATE_DATE for the EXCH_RATE_TYPE
+Valid Values: Positive integers
+Dependencies: None
+Required: No
+Editable: Yes
+Notes: Use only in multi-currency companies. Overrides the default exchange rate, which is the product of the CURRENCY, EXCH_RATE_DATE and EXCH_RATE_TYPE.","Field name: STATE
+UI Field Name: State
+Field Type: Character
+Length: 6
+Valid Values: Draft, Posted
+Required: No
+Editable: Only if state = Draft
+Note: If left blank, State will be set to Posted
+","Field Name: ALLOCATION ID
+UI Field Name: Allocation
+Type: Character 
+Length: 50
+Default Value: None
+Valid Values: An existing valid Allocation
+Dependencies: None
+Required: No
+Editable: No","Field Name: BILLABLE
+UI Field Name: BILLABLE
+Type: Character 
+Length: 1
+Default Value: F
+Valid Values: T or F
+Dependencies: CUSTOMER and ITEM (as per UI)
+Required: No
+Editable: YES","Field Name: TAXIMPLICATIONS
+UI Field Name: Tax implications
+Type: Character
+Length: 25
+Default Value: None
+Valid Values: None, Inbound, Outbound
+Dependencies: For VAT or GST tax solutions
+Required: No
+Note: If left blank, the tax implication is set to None","Field Name: TAXSOLUTIONID
+UI Field Name: Tax solution
+Type: Character
+Length: 100
+Default Value: None
+Valid Values: Alphanumeric and underscore
+Dependencies:  For VAT or GST tax solutions; refers to a valid VAT or GST tax solution
+Required:  Yes, only if your organization is configured for multiple tax jurisdictions and you are importing at the top level.
+Editable: No
+Note:  Only applicable if Inbound or Outbound tax implications","Field Name: VATVENDORID
+UI Field Name: Vendor
+Type: Character
+Length: 20
+Dependencies: For VAT or GST tax solutions
+Required: No
+Note: Only applicable if Inbound tax implications","Field Name: VATCUSTOMERID
+UI Field Name:  Customer
+Type: Character
+Length: 20
+Dependencies:  For VAT or GST tax solutions
+Required: No
+Note: Only applicable if Outbound tax implications","Field Name:  VATCONTACTID
+UI Field Name:   Contact
+Type: Character
+Length: 20
+Dependencies: For VAT or GST tax solutions
+Required: No
+Note: Only applicable if inbound or outbound tax implications; overrides the Vendor Pay-to Contact ID or the Customer Ship-to Contact ID for VAT reporting purposes","Field Name: DETAILID
+UI Field Name: Tax details
+Type: Character
+Length: 100
+Default Value: None
+Valid Values:  Alphanumeric and underscore
+Dependencies: For VAT or GST tax solutions; refers to a valid Tax Detail ID
+Required: Yes, only if there are Inbound or Outbound tax implications 
+Description: Tax Detail ID","Field Name: TAX_AMOUNT
+UI Field Name: Transaction Tax
+Type: Number
+Length: 38,2
+Default Value: None
+Valid Values: Any Number
+Dependencies: For VAT or GST tax solutions
+Required: No
+Description:  Transaction tax amount
+Note: Only applicable if Inbound or Outbound tax implications; overrides the tax calculated by the tax detail","Field name: CUSTOMERID
+UI field name: Customer
+Type: Character
+Max length: 20
+Default value: None
+Dependencies: A valid customer
+Required: No
+Editable: No","Field name: VENDORID
+UI field name: Vendor
+Type: Character
+Max length: 20
+Default value: None
+Dependencies: A valid vendor
+Required: No
+Editable: No","Field name: PROJECTID
+UI field name: Project
+Type: Character
+Max length: 20
+Default value: None
+Dependencies: A valid project
+Required: No
+Editable: No","Field name: ITEMID
+UI field name: Item
+Type: Character
+Max length: 30
+Default value: None
+Dependencies: A valid item
+Required: No
+Editable: No","Field name: EMPLOYEEID
+UI field name: Employee
+Type: Character
+Max length: 20
+Default value: None
+Dependencies: A valid employee
+Required: No
+Editable: No","Field name: CLASSID
+UI field name: Class
+Type: Character
+Max length: 50
+Default value: None
+Dependencies: A valid class
+Required: No
+Editable: No","Field Name: TAX_LINE_NO
+UI Field Name: No field name as such. These are the incrementing numbers for the tax lines specific to line items.
+Type: Number
+Length: 4
+Default Value: None
+Valid Values: Positive integer
+Dependencies:  For VAT and GST tax solutions; start with 1 for the first tax line of a line item, and increment by one for each subsequent line
+Required: Yes, only if there are Inbound or Outbound tax implications
+Editable: No"
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,1,6145,2220,D3000,,Sales - Food - In Horto Public,-1025.39,,N2002,,,,,,,,Outbound,United Kingdom - VAT,,,,UK Sale Services Standard Rate,205.11,,,,,,,1
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,2,6102,2220,D3000,,Sales - Beer - In Horto Public,-25.84,,N2002,,,,,,,,Outbound,United Kingdom - VAT,,,,UK Sale Services Standard Rate,5.16,,,,,,,1
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,3,6104,2220,D3000,,Sales - Non-Alcoholic - In Horto Public,-57.73,,N2002,,,,,,,,Outbound,United Kingdom - VAT,,,,UK Sale Services Standard Rate,11.57,,,,,,,1
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,4,6103,2220,D3000,,Sales - Wine - In Horto Public,-366.66,,N2002,,,,,,,,Outbound,United Kingdom - VAT,,,,UK Sale Services Standard Rate,73.34,,,,,,,1
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,5,6101,2220,D3000,,Sales - Cocktails - In Horto Public,-69.17,,N2002,,,,,,,,Outbound,United Kingdom - VAT,,,,UK Sale Services Standard Rate,13.83,,,,,,,1
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,6,6101,2220,D3000,,Sales - Spirits - In Horto Public,-10,,N2002,,,,,,,,Outbound,United Kingdom - VAT,,,,UK Sale Services Standard Rate,2,,,,,,,1
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,7,GL Code,Location Code,Dept Code,,Description,Amount,,N2002,,,,,,,,,,,,,,,,,,,,,
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,8,GL Code,Location Code,Dept Code,,Description,Amount,,N2002,,,,,,,,,,,,,,,,,,,,,
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,9,2980,2220,D3000,,In Horto-Card Payment Clearing,1527.93,,N2002,,,,,,,,,,,,,,,,,,,,,
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,10,8760,2220,D3000,,In Horto-Payment Charges,23.25,,N2002,,,,,,,,,,,,,,,,,,,,,
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,11,5940,2220,D3000,,In Horto-House Account Close to Customer Deposit,548.88,,N2002,,,,,,,,,,,,,,,,,,,,,
+,SJ,26/04/2024,,Sales Journal - London - In Horto - 26.04.2024,,12,5840,2220,D3000,,In Horto-Tips,-234.26,,N2002,,,,,,,,,,,,,,,,,,,,,

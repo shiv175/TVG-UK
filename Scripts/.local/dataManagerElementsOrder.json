@@ -1,0 +1,305 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&"
+      ],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26",
+        "salesFilePath&Sequence_21",
+        "accountingFileDownload&Sequence_21",
+        "in_salesFileName&Sequence_21",
+        "in_AccountFileName&Sequence_21",
+        "LocationList&Sequence_21",
+        "in_ImportFileName&Sequence_21",
+        "in_flagForCloseLocation&Sequence_21",
+        "in_netAmountZero&Sequence_21",
+        "in_discountFileName&Sequence_21"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ImportFileName"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/Login to TVG.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Navigate to Sales.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/Navigate to Sales.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Download Sales Breakdown Report.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/Download Sales Breakdown Report.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26",
+        "discountFileDownload&Sequence_4",
+        "salesFilePath&Sequence_4",
+        "salesFileDownload&Sequence_4"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "discountFileName",
+        "flagForCloseLocation",
+        "in_LocationCurrentItem",
+        "salesFilePath",
+        "salesFileName"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/Download Accounting Report.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26",
+        "CreditTotal&Sequence_1",
+        "debitTotal&Sequence_1",
+        "accountExcelData&Sequence_38",
+        "accountExcelDT&Sequence_1",
+        "accountExcelData&Sequence_31",
+        "accountingValue&Sequence_11",
+        "accountingFileDownload&Sequence_11",
+        "accountingFileDownload&Sequence_2",
+        "accountingValue&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_discountFileName",
+        "in_ImportFileName",
+        "in_salesFileName",
+        "netAmountZero",
+        "in_LocationCurrentItem",
+        "AccountFileName",
+        "accountingFileDownload"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/LogOut to TVG.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/DumpSalesBreakDownData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26",
+        "discountSheetName&Sequence_1",
+        "diccountExcelOutput&Sequence_30",
+        "salesExcelOutput&Sequence_30",
+        "accountingDataDT&Sequence_1",
+        "Location&Sequence_1",
+        "SalesDT&Sequence_1",
+        "salesExcelOutput&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_discountFileName",
+        "in_salesFilePath",
+        "in_AccountFileName",
+        "in_accountingFileDownload",
+        "in_salesFileName"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/Dump Data In Sales Journal.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26",
+        "sameValueRowIndex&Sequence_422",
+        "DiscountDataDT&Sequence_1",
+        "sameValueRowIndex&Sequence_340",
+        "ImportFileName&Sequence_1",
+        "ImportSheetDT&Sequence_1",
+        "sameValueRowIndex&Sequence_65",
+        "Location&Sequence_1",
+        "entityIdRowIndex&Sequence_1",
+        "entityId&Sequence_1",
+        "sageEntityId&Sequence_1",
+        "DeptCode&Sequence_1",
+        "deptCodeIndex&Sequence_1",
+        "MappingRevCentreDT&Sequence_1",
+        "toDate&Sequence_1",
+        "fromDate&Sequence_1",
+        "count&Sequence_1",
+        "sameValueRowIndex&Sequence_19",
+        "accountingDataDT&Sequence_1",
+        "SalesGLCodeDT&Sequence_1",
+        "salesDataDT&Sequence_1",
+        "salesLineCodingDT&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_discountFileName",
+        "in_LocationCurrentItem",
+        "in_salesFileName",
+        "ImportFileName",
+        "in_AccountFileName",
+        "in_accountingFileDownload"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/InitConfig.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26",
+        "DocumentFolder&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/Validation/ValidatingCodesAndUpdateOnExcel.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_4"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Sequence.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "accountingDataDT&Sequence_1",
+        "Config&Sequence_7"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Test seq for orion.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "sameValueRowIndex&Sequence_2",
+        "Config&Sequence_7"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/Move Files.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_26"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_discountFileName",
+        "in_fromDate",
+        "in_LocationCurrentItem",
+        "in_ImportFileName",
+        "in_AccountFileName",
+        "in_salesFileName"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/Test seq for orion.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "SalesGLCodeDT&Sequence_1",
+        "entityIdRowIndex&Sequence_1",
+        "entityId&Sequence_1",
+        "deptCodeIndex&Sequence_1",
+        "DeptCode&Sequence_1",
+        "count&Sequence_1",
+        "salesLineCodingDT&Sequence_1",
+        "salesDataDT&Sequence_1",
+        "sageEntityId&Sequence_1",
+        "MappingRevCentreDT&Sequence_1",
+        "Location&Sequence_1",
+        "toDate&Sequence_1",
+        "fromDate&Sequence_1",
+        "accountingDataDT&Sequence_1",
+        "sameValueRowIndex&Sequence_115",
+        "sameValueRowIndex&Sequence_116",
+        "Config&Sequence_21",
+        "sameValueRowIndex&Sequence_55",
+        "sameValueRowIndex&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Library/DumpAccountingData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "AccountDT&Sequence_1",
+        "Location&Sequence_1",
+        "accountingDataDT&Sequence_1",
+        "salesExcelOutput&Sequence_2",
+        "Config&Sequence_23"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_salesFilePath",
+        "in_AccountFileName",
+        "in_accountingFileDownload",
+        "in_salesFileName"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Test.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_9"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}

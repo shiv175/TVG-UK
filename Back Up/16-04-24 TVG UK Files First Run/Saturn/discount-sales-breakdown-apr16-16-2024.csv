@@ -1,0 +1,10 @@
+Discount Name,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+No Discount,,137,892.66,0,892.66,88.84,
+No Discount,Venue Bar,33,195.12,0,195.12,19.38,
+No Discount,Satellite Bar,104,697.54,0,697.54,69.46,
+Employee Discount - Item,,1,2.72,2.74,5.46,0.28,
+Employee Discount - Item,Satellite Bar,1,2.72,2.74,5.46,0.28,
+Happy Hour Draft Discount,,2,14.56,1.82,16.38,1.44,
+Happy Hour Draft Discount,Satellite Bar,2,14.56,1.82,16.38,1.44,
+Employee Discount - Check,,6,23.62,23.68,47.3,2.38,
+Employee Discount - Check,Satellite Bar,6,23.62,23.68,47.3,2.38,

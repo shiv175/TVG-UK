@@ -1,0 +1,9 @@
+Sales Category,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+Food,,49,484.58,0,484.58,96.92,
+Food,Lupins Public,49,484.58,0,484.58,96.92,
+Wine,,14,197.09,0,197.09,39.41,
+Wine,Lupins Public,14,197.09,0,197.09,39.41,
+Cocktails,,4,28.33,0,28.33,5.67,
+Cocktails,Lupins Public,4,28.33,0,28.33,5.67,
+Non-Alcoholic,,5,16.26,0,16.26,3.24,
+Non-Alcoholic,Lupins Public,5,16.26,0,16.26,3.24,

@@ -1,0 +1,10 @@
+Discount Name,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+No Discount,,1046,6592.49,0,6592.49,1318.56,
+No Discount,Lafayette Gig,913,6104.79,0,6104.79,1220.76,
+No Discount,Cloakroom Gig - Lafayette,74,153.92,0,153.92,31.08,
+No Discount,Lafayette Box Office,2,37.5,0,37.5,7.5,
+No Discount,Souvlaki & Chips - Lafayette,57,296.28,0,296.28,59.22,
+Comp Lafayette Drink Token 100%,,2,0,11.66,11.66,0,
+Comp Lafayette Drink Token 100%,Lafayette Gig,2,0,11.66,11.66,0,
+Comp Staff Meal 50%,,8,33.34,33.35,66.69,6.66,
+Comp Staff Meal 50%,Souvlaki & Chips - Lafayette,8,33.34,33.35,66.69,6.66,

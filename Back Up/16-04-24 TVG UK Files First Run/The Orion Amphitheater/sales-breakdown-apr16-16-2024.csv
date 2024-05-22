@@ -1,0 +1,11 @@
+Sales Category,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+Non-Alcoholic,,10,41.25,13.75,55,3.7,
+Non-Alcoholic,JEFF & BLUE'S,10,41.25,13.75,55,3.7,
+Beer,,61,424.5,141.5,566,38.16,
+Beer,JEFF & BLUE'S,61,424.5,141.5,566,38.16,
+Liquor,,23,288.75,85.25,374,26.06,
+Liquor,JEFF & BLUE'S,23,288.75,85.25,374,26.06,
+Cocktails,,4,45,15,60,4.04,
+Cocktails,JEFF & BLUE'S,4,45,15,60,4.04,
+Wine,,2,16.5,5.5,22,1.48,
+Wine,JEFF & BLUE'S,2,16.5,5.5,22,1.48,

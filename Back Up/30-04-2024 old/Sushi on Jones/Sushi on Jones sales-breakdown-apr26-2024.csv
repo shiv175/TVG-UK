@@ -1,0 +1,13 @@
+Sales Category,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+Food,,14,750.83,0,750.83,150.17,
+Food,SOJ Public,14,750.83,0,750.83,150.17,
+Sake,,2,24.16,0,24.16,4.84,
+Sake,SOJ Public,2,24.16,0,24.16,4.84,
+Non-Alcoholic,,6,12.51,0,12.51,2.49,
+Non-Alcoholic,SOJ Public,6,12.51,0,12.51,2.49,
+No Sales Category,,4,20,0,20,4,
+No Sales Category,SOJ Public,4,20,0,20,4,
+Cocktails,,2,22.09,0,22.09,4.41,
+Cocktails,SOJ Public,2,22.09,0,22.09,4.41,
+Wine,,2,20,0,20,4,
+Wine,SOJ Public,2,20,0,20,4,

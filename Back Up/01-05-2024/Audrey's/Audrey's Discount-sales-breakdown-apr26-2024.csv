@@ -1,0 +1,11 @@
+Discount Name,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+No Discount,,126,712.7,0,712.7,142.5,
+No Discount,Audrey's Public,126,712.7,0,712.7,142.5,
+Comp Friends of Audrey's 20%,,10,55.53,13.89,69.42,11.11,
+Comp Friends of Audrey's 20%,Audrey's Public,10,55.53,13.89,69.42,11.11,
+Comp Staff Meal 50%,,4,5.75,5.76,11.51,1.15,
+Comp Staff Meal 50%,Audrey's Public,4,5.75,5.76,11.51,1.15,
+Comp Staff Meal 100%,,1,0,12.5,12.5,0,
+Comp Staff Meal 100%,Audrey's Public,1,0,12.5,12.5,0,
+Comp tvg Staff Discount 50%,,6,8.55,8.54,17.09,1.7,
+Comp tvg Staff Discount 50%,Audrey's Public,6,8.55,8.54,17.09,1.7,

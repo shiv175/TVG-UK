@@ -1,0 +1,964 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Download_Sales_Breakdown_Report" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.SAP;assembly=UiPath.UiAutomation.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="salesFileName" Type="OutArgument(x:String)" />
+    <x:Property Name="salesFilePath" Type="OutArgument(x:String)" />
+    <x:Property Name="in_LocationCurrentItem" Type="InArgument(x:String)" />
+    <x:Property Name="flagForCloseLocation" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="discountFileName" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1234,3140</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Download_Sales_Breakdown_Report_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Core.Activities.SAP</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Download_Sales_Breakdown_Report" sap:VirtualizedContainerService.HintSize="1204,3075" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1142,304" sap2010:WorkflowViewState.IdRef="CommentOut_11">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,193" sap2010:WorkflowViewState.IdRef="Sequence_20">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="354,108" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[in_LocationCurrentItem+&quot; Started&quot;]" />
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="1142,122" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[in_LocationCurrentItem+&quot; Started&quot;]" />
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: Toast Home" sap:VirtualizedContainerService.HintSize="1142,2561" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1108,2321" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1046,57" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="512,3035" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Last Week'" sap:VirtualizedContainerService.HintSize="450,189" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="776, 543, 160, 48" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Last Week'" FullSelectorArgument="&lt;webctrl aaname='Last Week' class='range-item' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Last Week' class='range-item' parentid='single-spa-application:root' tag='DIV' type='' check:innerText='Last Week' /&gt;" Guid="f9a01a94-773a-4705-ad3e-705d6b0b1096" ImageBase64="" InformativeScreenshot="3b811d18aab644baa1a795c9b734c3c7.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <If Condition="[in_LocationCurrentItem.Equals(&quot;Saturn&quot;) or in_LocationCurrentItem.Equals(&quot;The Orion Amphitheater&quot;) or in_LocationCurrentItem.Equals(&quot;The Orion Amphitheater (OLD)&quot;)]" DisplayName="If select location saturn, orion vs others" sap:VirtualizedContainerService.HintSize="450,2761" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,1335" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NSelectItem DelayAfter="10" DelayBefore="10" DisplayName="Select Item 'I'" sap:VirtualizedContainerService.HintSize="354,189" sap2010:WorkflowViewState.IdRef="NSelectItem_3" Item="[in_LocationCurrentItem]" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                          <uix:NSelectItem.Items>
+                            <scg:List x:TypeArguments="x:String" Capacity="14">
+                              <x:String>ArchesArches</x:String>
+                              <x:String>Audrey'sAudrey's</x:String>
+                              <x:String>CarruboCarrubo</x:String>
+                              <x:String>Flat Iron SquareFlat Iron Square</x:String>
+                              <x:String>In HortoIn Horto</x:String>
+                              <x:String>LafayetteLafayette</x:String>
+                              <x:String>LupinsLupins</x:String>
+                              <x:String>OmearaOmeara</x:String>
+                              <x:String>Saturn</x:String>
+                              <x:String>Sushi on JonesSushi on Jones</x:String>
+                              <x:String>Tap &amp; BottleTap &amp; Bottle</x:String>
+                              <x:String>The Orion Amphitheater</x:String>
+                              <x:String>The Orion Amphitheater (OLD)</x:String>
+                              <x:String>The SocialThe Social</x:String>
+                            </scg:List>
+                          </uix:NSelectItem.Items>
+                          <uix:NSelectItem.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="194, 119, 148, 16" CvTextArgument="*" CvType="Text" DesignTimeRectangle="156, 101, 120, 52" DesignTimeScaleFactor="1" ElementType="DropDown" FriendlyName="'The Orion Amphitheater'" FullSelectorArgument="&lt;webctrl aria-role='combobox' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='combobox' tag='DIV' type='' class='' aaname='' /&gt;" Guid="e1fcc519-f7a6-47e9-8df5-1b7f2eceeaee" InformativeScreenshot="2ecef04553b204b691b23bb98ad59ba1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="87, 184, 57, 17" CvTextArgument="Reports" CvType="Text" DesignTimeRectangle="96, 107, 40, 40" FriendlyName="'I'" FullSelectorArgument="&lt;webctrl aria-label='Open' aria-role='img' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-label='Open' aria-role='img' tag='I' type='' class='inline-block leading-none text-secondary p-2 rounded-full outline-none group-hover:bg-darken-4 group-focus-visible:shadow-focus-inset' aaname='' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NSelectItem.Target>
+                        </uix:NSelectItem>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayBefore="7" DisplayName="Click 'Jan 1 - Jan 7, 2024'" sap:VirtualizedContainerService.HintSize="354,189" sap2010:WorkflowViewState.IdRef="NClick_7" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="776, 389, 176, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Jan 1 - Jan 7, 2024'" FullSelectorArgument="&lt;webctrl tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='active outlined has-icon icon-left' aaname='' /&gt;" Guid="483c8836-a70f-4c48-a7ac-9c0f18f85273" ImageBase64="" InformativeScreenshot="0a2e42efd4efb5056781d2baa8b6b32f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="3" DisplayName="Type Into 'Start Date'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="354,250" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Text="[DateTime.Now.AddDays(-2).ToString(&quot;MM/dd/yy&quot;)]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="958, 475, 49, 13" CvTextArgument="01/01/24" CvType="Text" DesignTimeRectangle="956, 463, 110, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'01/01/24'" FullSelectorArgument="&lt;webctrl class='active' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl class='active' tag='INPUT' type='text' aaname='' /&gt;" Guid="87232130-caa8-45a5-adf4-a3cdacd6b45d" InformativeScreenshot="294f65b5a297cc8253fe9b59b7deb9af.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="954, 452, 59, 12" CvTextArgument="Start Date" CvType="Text" DesignTimeRectangle="956, 451, 58, 14" ElementType="Text" FriendlyName="'Start Date'" FullSelectorArgument="&lt;webctrl aaname='Start Date' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Start Date' parentid='single-spa-application:root' tag='DIV' type='' class='tk-input-label active' check:innerText='Start Date' /&gt;" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="2" DisplayName="Type Into 'End Date'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="354,250" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Text="[DateTime.Now.AddDays(-2).ToString(&quot;MM/dd/yy&quot;)]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="1084, 475, 49, 12" CvTextArgument="01/07/24" CvType="Text" DesignTimeRectangle="1082, 463, 110, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'01/07/24'" FullSelectorArgument="&lt;webctrl class='active' idx='2' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl class='active' aaname='' tag='INPUT' type='text' /&gt;" Guid="db0315b5-e79b-4261-a688-9b749077c69e" InformativeScreenshot="bf1e7d2eb1956caa446428c6f5ed934b.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
+                                  <uix:Target CvTextArea="1081, 452, 52, 12" CvTextArgument="End Date" CvType="Text" DesignTimeRectangle="1082, 451, 51, 14" ElementType="Text" FriendlyName="'End Date'" FullSelectorArgument="&lt;webctrl aaname='End Date' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='End Date' parentid='single-spa-application:root' tag='DIV' type='' class='tk-input-label active' check:innerText='End Date' /&gt;" SearchSteps="FuzzySelector, CV" />
+                                  <uix:Target CvTextArea="775, 341, 298, 18" CvTextArgument="Dive Deeper into Your Business" CvType="Text" DesignTimeRectangle="776, 335, 360, 30" ElementType="Text" FriendlyName="'Dive Deeper'" FullSelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' type='' aaname='Dive Deeper into Your Business' check:innerText='Dive Deeper into Your Business' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Dive Deeper'" sap:VirtualizedContainerService.HintSize="354,189" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="960, 337, 176, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;aml-filter-selector&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-tree&amp;gt;tk-dropdown&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-toggle&amp;gt;div&amp;gt;tk-input&amp;gt;div&amp;gt;input' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl class='outlined selector-input has-icon icon-left' tag='INPUT' type='text' aaname='' /&gt;" Guid="b36fb817-1970-4ac5-86b1-45a08d439a45" InformativeScreenshot="5d37645b9883b8fad123ee997133fc4f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="776, 283, 360, 30" ElementType="Text" FriendlyName="'Dive Deeper'" FullSelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' type='' aaname='Dive Deeper into Your Business' check:innerText='Dive Deeper into Your Business' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <ucas:SelectMenuItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Select Menu Item 'I'" sap:VirtualizedContainerService.HintSize="354,183" sap2010:WorkflowViewState.IdRef="SelectMenuItem_1" Item="[in_LocationCurrentItem]">
+                          <ucas:SelectMenuItem.Items>
+                            <scg:List x:TypeArguments="x:String" Capacity="4">
+                              <x:String>check_box_outline_blankThe Orion Amphitheater</x:String>
+                              <x:String>The Orion Amphitheater</x:String>
+                              <x:String>check_box_outline_blankSaturn</x:String>
+                              <x:String>Saturn</x:String>
+                            </scg:List>
+                          </ucas:SelectMenuItem.Items>
+                          <ucas:SelectMenuItem.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="db8a7458-bf6c-49d0-b70c-4834be78427c" InformativeScreenshot="db6863aacf8def43c4bd1447acb3dce7" Selector="&lt;webctrl parentid='single-spa-application:root' parentname='keyboard_arrow_down' tag='I' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ucas:SelectMenuItem.Target>
+                        </ucas:SelectMenuItem>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,1265" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NSelectItem DelayAfter="10" DelayBefore="10" DisplayName="Select Item 'I'" sap:VirtualizedContainerService.HintSize="354,189" sap2010:WorkflowViewState.IdRef="NSelectItem_8" Item="[in_LocationCurrentItem+in_LocationCurrentItem]" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                          <uix:NSelectItem.Items>
+                            <scg:List x:TypeArguments="x:String" Capacity="14">
+                              <x:String>ArchesArches</x:String>
+                              <x:String>Audrey'sAudrey's</x:String>
+                              <x:String>CarruboCarrubo</x:String>
+                              <x:String>Flat Iron SquareFlat Iron Square</x:String>
+                              <x:String>In HortoIn Horto</x:String>
+                              <x:String>LafayetteLafayette</x:String>
+                              <x:String>LupinsLupins</x:String>
+                              <x:String>OmearaOmeara</x:String>
+                              <x:String>Saturn</x:String>
+                              <x:String>Sushi on JonesSushi on Jones</x:String>
+                              <x:String>Tap &amp; BottleTap &amp; Bottle</x:String>
+                              <x:String>The Orion Amphitheater</x:String>
+                              <x:String>The Orion Amphitheater (OLD)</x:String>
+                              <x:String>The SocialThe Social</x:String>
+                            </scg:List>
+                          </uix:NSelectItem.Items>
+                          <uix:NSelectItem.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="194, 119, 148, 16" CvTextArgument="*" CvType="Text" DesignTimeRectangle="156, 101, 120, 52" DesignTimeScaleFactor="1" ElementType="DropDown" FriendlyName="'The Orion Amphitheater'" FullSelectorArgument="&lt;webctrl aria-role='combobox' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='combobox' tag='DIV' type='' class='' aaname='' /&gt;" Guid="e1fcc519-f7a6-47e9-8df5-1b7f2eceeaee" InformativeScreenshot="2ecef04553b204b691b23bb98ad59ba1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="87, 184, 57, 17" CvTextArgument="Reports" CvType="Text" DesignTimeRectangle="96, 107, 40, 40" FriendlyName="'I'" FullSelectorArgument="&lt;webctrl aria-label='Open' aria-role='img' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-label='Open' aria-role='img' tag='I' type='' class='inline-block leading-none text-secondary p-2 rounded-full outline-none group-hover:bg-darken-4 group-focus-visible:shadow-focus-inset' aaname='' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NSelectItem.Target>
+                        </uix:NSelectItem>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayBefore="7" DisplayName="Click 'Jan 1 - Jan 7, 2024'" sap:VirtualizedContainerService.HintSize="354,189" sap2010:WorkflowViewState.IdRef="NClick_10" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="776, 389, 176, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Jan 1 - Jan 7, 2024'" FullSelectorArgument="&lt;webctrl tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='active outlined has-icon icon-left' aaname='' /&gt;" Guid="483c8836-a70f-4c48-a7ac-9c0f18f85273" ImageBase64="" InformativeScreenshot="0a2e42efd4efb5056781d2baa8b6b32f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="354,122" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[DateTime.Now.AddDays(-2).ToString(&quot;MM/dd/yy&quot;)]" />
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="3" DisplayName="Type Into 'Start Date'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="354,250" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Text="[DateTime.Now.AddDays(-2).ToString(&quot;MM/dd/yy&quot;)]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="958, 475, 49, 13" CvTextArgument="01/01/24" CvType="Text" DesignTimeRectangle="956, 463, 110, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'01/01/24'" FullSelectorArgument="&lt;webctrl class='active' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl class='active' tag='INPUT' type='text' aaname='' /&gt;" Guid="87232130-caa8-45a5-adf4-a3cdacd6b45d" InformativeScreenshot="294f65b5a297cc8253fe9b59b7deb9af.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="954, 452, 59, 12" CvTextArgument="Start Date" CvType="Text" DesignTimeRectangle="956, 451, 58, 14" ElementType="Text" FriendlyName="'Start Date'" FullSelectorArgument="&lt;webctrl aaname='Start Date' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Start Date' parentid='single-spa-application:root' tag='DIV' type='' class='tk-input-label active' check:innerText='Start Date' /&gt;" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="2" DisplayName="Type Into 'End Date'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="354,250" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Text="[DateTime.Now.AddDays(-2).ToString(&quot;MM/dd/yy&quot;)]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="1084, 475, 49, 12" CvTextArgument="01/07/24" CvType="Text" DesignTimeRectangle="1082, 463, 110, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'01/07/24'" FullSelectorArgument="&lt;webctrl class='active' idx='2' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl class='active' aaname='' tag='INPUT' type='text' /&gt;" Guid="db0315b5-e79b-4261-a688-9b749077c69e" InformativeScreenshot="bf1e7d2eb1956caa446428c6f5ed934b.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
+                                  <uix:Target CvTextArea="1081, 452, 52, 12" CvTextArgument="End Date" CvType="Text" DesignTimeRectangle="1082, 451, 51, 14" ElementType="Text" FriendlyName="'End Date'" FullSelectorArgument="&lt;webctrl aaname='End Date' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='End Date' parentid='single-spa-application:root' tag='DIV' type='' class='tk-input-label active' check:innerText='End Date' /&gt;" SearchSteps="FuzzySelector, CV" />
+                                  <uix:Target CvTextArea="775, 341, 298, 18" CvTextArgument="Dive Deeper into Your Business" CvType="Text" DesignTimeRectangle="776, 335, 360, 30" ElementType="Text" FriendlyName="'Dive Deeper'" FullSelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' type='' aaname='Dive Deeper into Your Business' check:innerText='Dive Deeper into Your Business' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NSelectItem DisplayName="Select Item 'Dive Deeper'" sap:VirtualizedContainerService.HintSize="354,180" sap2010:WorkflowViewState.IdRef="NSelectItem_9" Item="check_box_outline_blanktvg hospitality UKkeyboard_arrow_down" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                          <uix:NSelectItem.Items>
+                            <scg:List x:TypeArguments="x:String" Capacity="4">
+                              <x:String>check_box_outline_blankSouthwark Quarterkeyboard_arrow_down</x:String>
+                              <x:String>Southwark Quarter</x:String>
+                              <x:String>check_box_outline_blanktvg hospitality UKkeyboard_arrow_down</x:String>
+                              <x:String>tvg hospitality UK</x:String>
+                            </scg:List>
+                          </uix:NSelectItem.Items>
+                          <uix:NSelectItem.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="702, 315, 91, 12" CvTextArgument="Select Locations" CvType="Text" DesignTimeRectangle="671, 303, 176, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'location_on'" FullSelectorArgument="&lt;webctrl class='tk-input-box' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;aml-filter-selector&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-tree&amp;gt;tk-dropdown&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-toggle&amp;gt;div&amp;gt;tk-input&amp;gt;div' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='tk-input-box' type='' parentid='single-spa-application:root' tag='DIV' aaname='' /&gt;" Guid="a2c3f996-ec66-478d-9dc2-6debb3e99158" ImageBase64="" InformativeScreenshot="a6a30f712a9841f6d59c0efb19021815.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="486, 255, 297, 18" CvTextArgument="Dive Deeper into Your Business" CvType="Text" DesignTimeRectangle="487, 249, 360, 30" ElementType="Text" FriendlyName="'Dive Deeper'" FullSelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' type='' aaname='Dive Deeper into Your Business' check:innerText='Dive Deeper into Your Business' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NSelectItem.Target>
+                        </uix:NSelectItem>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DelayBefore="7" DisplayName="Click 'Jan 1 - Jan 7, 2024'" sap:VirtualizedContainerService.HintSize="1046,189" sap2010:WorkflowViewState.IdRef="NClick_11" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="776, 389, 176, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Jan 1 - Jan 7, 2024'" FullSelectorArgument="&lt;webctrl tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='active outlined has-icon icon-left' aaname='' /&gt;" Guid="483c8836-a70f-4c48-a7ac-9c0f18f85273" ImageBase64="" InformativeScreenshot="0a2e42efd4efb5056781d2baa8b6b32f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="1046,122" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[DateTime.Now.AddDays(-2).ToString(&quot;MM/dd/yy&quot;)]" />
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="1" DisplayName="Type Into 'Start Date'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1046,250" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Text="04/03/24" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="958, 475, 49, 13" CvTextArgument="01/01/24" CvType="Text" DesignTimeRectangle="956, 463, 110, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'01/01/24'" FullSelectorArgument="&lt;webctrl class='active' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl class='active' tag='INPUT' type='text' aaname='' /&gt;" Guid="87232130-caa8-45a5-adf4-a3cdacd6b45d" InformativeScreenshot="294f65b5a297cc8253fe9b59b7deb9af.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CvTextArea="954, 452, 59, 12" CvTextArgument="Start Date" CvType="Text" DesignTimeRectangle="956, 451, 58, 14" ElementType="Text" FriendlyName="'Start Date'" FullSelectorArgument="&lt;webctrl aaname='Start Date' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Start Date' parentid='single-spa-application:root' tag='DIV' type='' class='tk-input-label active' check:innerText='Start Date' /&gt;" SearchSteps="FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="2" DisplayName="Type Into 'End Date'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1046,250" sap2010:WorkflowViewState.IdRef="NTypeInto_6" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Text="04/03/24" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="1084, 475, 49, 12" CvTextArgument="01/07/24" CvType="Text" DesignTimeRectangle="1082, 463, 110, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'01/07/24'" FullSelectorArgument="&lt;webctrl class='active' idx='2' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl class='active' aaname='' tag='INPUT' type='text' /&gt;" Guid="db0315b5-e79b-4261-a688-9b749077c69e" InformativeScreenshot="bf1e7d2eb1956caa446428c6f5ed934b.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
+                      <uix:Target CvTextArea="1081, 452, 52, 12" CvTextArgument="End Date" CvType="Text" DesignTimeRectangle="1082, 451, 51, 14" ElementType="Text" FriendlyName="'End Date'" FullSelectorArgument="&lt;webctrl aaname='End Date' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='End Date' parentid='single-spa-application:root' tag='DIV' type='' class='tk-input-label active' check:innerText='End Date' /&gt;" SearchSteps="FuzzySelector, CV" />
+                      <uix:Target CvTextArea="775, 341, 298, 18" CvTextArgument="Dive Deeper into Your Business" CvType="Text" DesignTimeRectangle="776, 335, 360, 30" ElementType="Text" FriendlyName="'Dive Deeper'" FullSelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' type='' aaname='Dive Deeper into Your Business' check:innerText='Dive Deeper into Your Business' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'location_on'" sap:VirtualizedContainerService.HintSize="1046,189" sap2010:WorkflowViewState.IdRef="NClick_12" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="991, 314, 91, 13" CvTextArgument="Select Locations" CvType="Text" DesignTimeRectangle="960, 355, 176, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;aml-filter-selector&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-tree&amp;gt;tk-dropdown&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-toggle&amp;gt;div&amp;gt;tk-input&amp;gt;div&amp;gt;input' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl class='outlined selector-input has-icon icon-left' tag='INPUT' type='text' aaname='' /&gt;" Guid="6c1851fd-602d-4586-b058-54f0ec18d4af" InformativeScreenshot="acd4b1627323bed981e8aad0a1be5414.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CvElementArea="977, 362, 21, 20" CvType="CheckBox" DesignTimeRectangle="966, 361, 24, 24" FriendlyName="'location_on'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;aml-filter-selector&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-tree&amp;gt;tk-dropdown&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-toggle&amp;gt;div&amp;gt;tk-input&amp;gt;div&amp;gt;div&amp;gt;tk-icon&amp;gt;i' parentid='single-spa-application:root' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='single-spa-application:root' tag='I' class='material-icons' aaname=' location_on ' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="2" DisplayName="Click 'tvg hospitality UK'" sap:VirtualizedContainerService.HintSize="1046,189" sap2010:WorkflowViewState.IdRef="NClick_13" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvElementArea="1199, 460, 25, 24" CvType="ArrowButton" DesignTimeRectangle="1200, 461, 24, 24" DesignTimeScaleFactor="1" FriendlyName="'keyboard_arrow_down'" FullSelectorArgument="&lt;webctrl idx='2' parentid='single-spa-application:root' parentname='keyboard_arrow_down' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='single-spa-application:root' parentname='keyboard_arrow_down' tag='I' class='material-icons' aaname=' keyboard_arrow_down ' /&gt;" Guid="e93330cd-2953-469b-88b7-6067cb5e5bea" InformativeScreenshot="b9afd0f214ee07917b145293457f7738.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CvTextArea="1006, 466, 122, 16" CvTextArgument="tvg hospitality UK" CvType="Text" DesignTimeRectangle="1008, 465, 120, 16" ElementType="Text" FriendlyName="'tvg hospitality UK'" FullSelectorArgument="&lt;webctrl aaname='tvg hospitality UK' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='tvg hospitality UK' parentid='single-spa-application:root' tag='DIV' type='' class='' check:innerText='tvg hospitality UK' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Tap &amp; Bottle'" sap:VirtualizedContainerService.HintSize="1046,189" sap2010:WorkflowViewState.IdRef="NClick_14" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="1030, 462, 81, 16" CvTextArgument="Tap &amp; Bottle" CvType="Text" DesignTimeRectangle="1032, 461, 79, 16" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Tap &amp; Bottle'" FullSelectorArgument="[string.Format(&quot;&lt;webctrl aaname='{0}' parentid='single-spa-application:root' tag='DIV' /&gt;&quot;, in_LocationCurrentItem)]" FuzzySelectorArgument="&lt;webctrl aaname='Tap &amp;amp; Bottle' parentid='single-spa-application:root' tag='DIV' type='' class='' check:innerText='Tap &amp;amp; Bottle' /&gt;" Guid="6454e855-2b3e-433e-9c98-73b40e639858" InformativeScreenshot="66e4ac776c0f5db8cce8acb91f46f39f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1046,57" sap2010:WorkflowViewState.IdRef="CommentOut_10">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="421,969" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Tap &amp; Bottle'" sap:VirtualizedContainerService.HintSize="359,189" sap2010:WorkflowViewState.IdRef="NClick_15" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="742, 514, 80, 16" CvTextArgument="Tap &amp; Bottle" CvType="Text" DesignTimeRectangle="743, 513, 79, 16" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Tap &amp; Bottle'" FullSelectorArgument="[string.Format(&quot;&lt;webctrl aaname='{0}' parentid='single-spa-application:root' tag='DIV' /&gt;&quot;, in_LocationCurrentItem)]" FuzzySelectorArgument="&lt;webctrl aaname='Tap &amp;amp; Bottle' parentid='single-spa-application:root' tag='DIV' type='' class='' /&gt;" Guid="9792598a-f886-4df8-88a1-3a1f172c0bd4" InformativeScreenshot="a09c1fc270e90e559dd1c6a8114fc644.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target CvElementArea="688, 462, 21, 20" CvTextArea="717, 466, 122, 16" CvTextArgument="tvg hospitality UK" CvType="CheckBox" DesignTimeRectangle="687, 461, 207, 24" FriendlyName="'check_box_outline_blank…'" FullSelectorArgument="&lt;webctrl class='selection-target' idx='2' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='selection-target' type='' parentid='single-spa-application:root' tag='DIV' aaname='' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NSelectItem DisplayName="Select Item 'Dive Deeper'" sap:VirtualizedContainerService.HintSize="359,189" sap2010:WorkflowViewState.IdRef="NSelectItem_10" Item="check_box_outline_blanktvg hospitality UKkeyboard_arrow_down" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                    <uix:NSelectItem.Items>
+                      <scg:List x:TypeArguments="x:String" Capacity="26">
+                        <x:String>check_box_outline_blankSouthwark Quarterkeyboard_arrow_down</x:String>
+                        <x:String>Southwark Quarter</x:String>
+                        <x:String>check_box_outline_blanktvg hospitality UKkeyboard_arrow_down</x:String>
+                        <x:String>tvg hospitality UK</x:String>
+                        <x:String>check_box_outline_blankTap &amp; Bottle</x:String>
+                        <x:String>Tap &amp; Bottle</x:String>
+                        <x:String>check_box_outline_blankIn Horto</x:String>
+                        <x:String>In Horto</x:String>
+                        <x:String>check_box_outline_blankThe Social</x:String>
+                        <x:String>The Social</x:String>
+                        <x:String>check_box_outline_blankOmeara</x:String>
+                        <x:String>Omeara</x:String>
+                        <x:String>check_box_outline_blankLupins</x:String>
+                        <x:String>Lupins</x:String>
+                        <x:String>check_box_outline_blankSushi on Jones</x:String>
+                        <x:String>Sushi on Jones</x:String>
+                        <x:String>check_box_outline_blankCarrubo</x:String>
+                        <x:String>Carrubo</x:String>
+                        <x:String>check_box_outline_blankLafayette</x:String>
+                        <x:String>Lafayette</x:String>
+                        <x:String>check_box_outline_blankArches</x:String>
+                        <x:String>Arches</x:String>
+                        <x:String>check_box_outline_blankFlat Iron Square</x:String>
+                        <x:String>Flat Iron Square</x:String>
+                        <x:String>check_box_outline_blankAudrey's</x:String>
+                        <x:String>Audrey's</x:String>
+                      </scg:List>
+                    </uix:NSelectItem.Items>
+                    <uix:NSelectItem.Target>
+                      <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="702, 315, 91, 12" CvTextArgument="Select Locations" CvType="Text" DesignTimeRectangle="671, 303, 176, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'location_on'" FullSelectorArgument="&lt;webctrl class='tk-input-box' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;aml-filter-selector&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-tree&amp;gt;tk-dropdown&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-toggle&amp;gt;div&amp;gt;tk-input&amp;gt;div' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='tk-input-box' type='' parentid='single-spa-application:root' tag='DIV' aaname='' /&gt;" Guid="a2c3f996-ec66-478d-9dc2-6debb3e99158" ImageBase64="" InformativeScreenshot="a6a30f712a9841f6d59c0efb19021815.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target CvTextArea="486, 255, 297, 18" CvTextArgument="Dive Deeper into Your Business" CvType="Text" DesignTimeRectangle="487, 249, 360, 30" ElementType="Text" FriendlyName="'Dive Deeper'" FullSelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' type='' aaname='Dive Deeper into Your Business' check:innerText='Dive Deeper into Your Business' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NSelectItem.Target>
+                  </uix:NSelectItem>
+                  <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'DIV'" sap:VirtualizedContainerService.HintSize="359,187" sap2010:WorkflowViewState.IdRef="SelectItem_2" Item="check_box_outline_blanktvg hospitality UKkeyboard_arrow_down">
+                    <ui:SelectItem.Items>
+                      <scg:List x:TypeArguments="x:String" Capacity="32">
+                        <x:String>check_box_outline_blankTap &amp; Bottle</x:String>
+                        <x:String>Tap &amp; Bottle</x:String>
+                        <x:String>check_box_outline_blankIn Horto</x:String>
+                        <x:String>In Horto</x:String>
+                        <x:String>check_box_outline_blankThe Social</x:String>
+                        <x:String>The Social</x:String>
+                        <x:String>check_box_outline_blankOmeara</x:String>
+                        <x:String>Omeara</x:String>
+                        <x:String>check_box_outline_blankLupins</x:String>
+                        <x:String>Lupins</x:String>
+                        <x:String>check_box_outline_blankSushi on Jones</x:String>
+                        <x:String>Sushi on Jones</x:String>
+                        <x:String>check_box_outline_blankCarrubo</x:String>
+                        <x:String>Carrubo</x:String>
+                        <x:String>check_box_outline_blankLafayette</x:String>
+                        <x:String>Lafayette</x:String>
+                        <x:String>check_box_outline_blankArches</x:String>
+                        <x:String>Arches</x:String>
+                        <x:String>check_box_outline_blankFlat Iron Square</x:String>
+                        <x:String>Flat Iron Square</x:String>
+                        <x:String>check_box_outline_blankAudrey's</x:String>
+                        <x:String>Audrey's</x:String>
+                      </scg:List>
+                    </ui:SelectItem.Items>
+                    <ui:SelectItem.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e0c2497e-6ce5-4268-b3b6-a8bd821b9299" InformativeScreenshot="9a1f5deffbb4f65a89ee3b8d9cd72fa7" Selector="&lt;webctrl class='tk-dropdown-item' idx='2' parentid='single-spa-application:root' tag='DIV' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:SelectItem.Target>
+                  </ui:SelectItem>
+                  <ui:SelectMultipleItems AddToSelection="{x:Null}" AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Multiple Items 'DIV'" sap:VirtualizedContainerService.HintSize="359,139" sap2010:WorkflowViewState.IdRef="SelectMultipleItems_1" MultipleItems="[{in_LocationCurrentItem}]">
+                    <ui:SelectMultipleItems.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7bbd5b0d-763f-45f4-bfee-4eaa656752cc" InformativeScreenshot="891ae8b414be876aee9faf398f304b48" Selector="&lt;webctrl class='tk-dropdown-nav' parentid='single-spa-application:root' tag='DIV' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:SelectMultipleItems.Target>
+                  </ui:SelectMultipleItems>
+                  <uix:NSelectItem DisplayName="Select Item 'Dive Deeper'" sap:VirtualizedContainerService.HintSize="359,180" sap2010:WorkflowViewState.IdRef="NSelectItem_1" Item="Orion Amphitheater and Food Village Group" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+                    <uix:NSelectItem.Items>
+                      <scg:List x:TypeArguments="x:String" Capacity="2">
+                        <x:String>check_box_outline_blankOrion Amphitheater and Food Village Groupkeyboard_arrow_down</x:String>
+                        <x:String>Orion Amphitheater and Food Village Group</x:String>
+                      </scg:List>
+                    </uix:NSelectItem.Items>
+                    <uix:NSelectItem.Target>
+                      <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="671, 337, 176, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'location_on'" FullSelectorArgument="&lt;webctrl class='tk-input-box' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;aml-filter-selector&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-tree&amp;gt;tk-dropdown&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-toggle&amp;gt;div&amp;gt;tk-input&amp;gt;div' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='tk-input-box' type='' parentid='single-spa-application:root' tag='DIV' aaname='' /&gt;" Guid="5f0f7a93-5ce0-4fb5-8a75-f878a4be80e9" InformativeScreenshot="f4113666eb954ad4086f3a652324fa18.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="487, 283, 360, 30" ElementType="Text" FriendlyName="'Dive Deeper'" FullSelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' type='' aaname='Dive Deeper into Your Business' check:innerText='Dive Deeper into Your Business' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NSelectItem.Target>
+                  </uix:NSelectItem>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="9" DisplayName="Click 'Submit'" sap:VirtualizedContainerService.HintSize="1046,189" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="487, 397, 86, 36" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Submit'" FullSelectorArgument="&lt;webctrl aaname=' Submit ' parentid='single-spa-application:root' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' Submit ' parentid='single-spa-application:root' tag='BUTTON' type='' class='' check:innerText='Submit' /&gt;" Guid="cca220b8-f26c-4b27-8a34-4700a183d3f1" InformativeScreenshot="c8e0ac1ae41eaae703059cae1c9c6653.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="487, 283, 360, 30" ElementType="Text" FriendlyName="'Dive Deeper'" FullSelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='aml-report-heading' parentid='single-spa-application:root' tag='DIV' type='' aaname='Dive Deeper into Your Business' check:innerText='Dive Deeper into Your Business' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NCheckState DisplayName="Check App State 'Non-gratuity service'" sap:VirtualizedContainerService.HintSize="1046,553" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="a60b66e6-c856-46cf-8c88-8664caca8b9a" Timeout="40" Version="V3">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="496,254" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: Toast Home" sap:VirtualizedContainerService.HintSize="434,57" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="0619a668-f3af-4d00-a55a-49c24f2a1a94" Version="V2">
+                    <uix:NApplicationCard.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="514,4126" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="si:FileInfo" Name="salesFileDownload" />
+                            <Variable x:TypeArguments="x:String" Name="salesFilePath" />
+                            <Variable x:TypeArguments="si:FileInfo" Name="discountFileDownload" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NSelectItem DelayBefore="5" DisplayName="Select Item 'Sales by Sales Category'" sap:VirtualizedContainerService.HintSize="452,189" sap2010:WorkflowViewState.IdRef="NSelectItem_2" Item="Revenue Center" ScopeIdentifier="0619a668-f3af-4d00-a55a-49c24f2a1a94" Version="V3">
+                            <uix:NSelectItem.Items>
+                              <scg:List x:TypeArguments="x:String" Capacity="8">
+                                <x:String>Dining Option</x:String>
+                                <x:String>Revenue Center</x:String>
+                                <x:String>Discount Name</x:String>
+                                <x:String>Service Area</x:String>
+                                <x:String>Service Type</x:String>
+                                <x:String>Server</x:String>
+                                <x:String>Sale Date</x:String>
+                                <x:String>Item Name</x:String>
+                              </scg:List>
+                            </uix:NSelectItem.Items>
+                            <uix:NSelectItem.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="582, 510, 168, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Dining Option'" FullSelectorArgument="&lt;webctrl class='tk-input-box' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;tk-selector&amp;gt;tk-dropdown&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-toggle&amp;gt;div&amp;gt;tk-input&amp;gt;div' idx='2' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='tk-input-box' type='' aaname='' parentid='single-spa-application:root' tag='DIV' /&gt;" Guid="83955321-59c9-4f86-8fb6-c51762e06181" ImageBase64="" InformativeScreenshot="8dd528bed9d89ad24dba68703d324f3c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="383, 393, 236, 30" ElementType="Text" FriendlyName="'Sales by Sales Category'" FullSelectorArgument="&lt;webctrl aaname='Sales by Sales Category' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Sales by Sales Category' parentid='single-spa-application:root' tag='DIV' type='' class='card-heading tk-heading-4-bold' check:innerText='Sales by Sales Category' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NSelectItem.Target>
+                          </uix:NSelectItem>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Update'" sap:VirtualizedContainerService.HintSize="452,189" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="0619a668-f3af-4d00-a55a-49c24f2a1a94" Version="V3">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="758, 510, 87, 36" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Update'" FullSelectorArgument="&lt;webctrl aaname=' Update ' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button' parentid='single-spa-application:root' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' Update ' type='' parentid='single-spa-application:root' tag='BUTTON' class='update-button aml-noprint' check:innerText='Update' /&gt;" Guid="4b57419e-a5ef-4131-92dd-9db6c2dfd6aa" InformativeScreenshot="42894a564ab4ce0347adee025ad95b0c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="383, 393, 236, 30" ElementType="Text" FriendlyName="'Sales by Sales Category'" FullSelectorArgument="&lt;webctrl aaname='Sales by Sales Category' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Sales by Sales Category' parentid='single-spa-application:root' tag='DIV' type='' class='card-heading tk-heading-4-bold' check:innerText='Sales by Sales Category' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <ui:GetLastDownloadedFile FileResource="{x:Null}" IgnoreFiles="{x:Null}" Timeout="{x:Null}" DisplayName="Wait for Download" DownloadFolder="[System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]" File="[salesFileDownload]" sap:VirtualizedContainerService.HintSize="452,553" sap2010:WorkflowViewState.IdRef="GetLastDownloadedFile_1">
+                            <ui:GetLastDownloadedFile.Body>
+                              <ActivityAction>
+                                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,265" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Sales by Sales Category'" sap:VirtualizedContainerService.HintSize="354,180" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="0619a668-f3af-4d00-a55a-49c24f2a1a94" Version="V3">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="1495, 393, 24, 24" DesignTimeScaleFactor="1" FriendlyName="'file_download'" FullSelectorArgument="&lt;webctrl parentid='single-spa-application:root' parentname='file_download' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='single-spa-application:root' parentname='file_download' tag='I' type='' class='material-icons' aaname=' file_download ' check:innerText='file_download' /&gt;" Guid="e69d3c85-125c-4350-8fdd-762b0c20145d" InformativeScreenshot="2495dc59e1a48a6ac12b122577dd6305.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target DesignTimeRectangle="383, 393, 236, 30" ElementType="Text" FriendlyName="'Sales by Sales Category'" FullSelectorArgument="&lt;webctrl aaname='Sales by Sales Category' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Sales by Sales Category' parentid='single-spa-application:root' tag='DIV' type='' class='card-heading tk-heading-4-bold' check:innerText='Sales by Sales Category' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:GetLastDownloadedFile.Body>
+                          </ui:GetLastDownloadedFile>
+                          <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[GlobalVariables.Config(&quot;DownloadFiles&quot;)+Path.GetFileName(salesFileDownload.ToString)]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="452,191" sap2010:WorkflowViewState.IdRef="MoveFile_3" Path="[salesFileDownload.ToString]" />
+                          <Assign sap:VirtualizedContainerService.HintSize="452,114" sap2010:WorkflowViewState.IdRef="Assign_2">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[salesFilePath]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[GlobalVariables.Config("DownloadFiles")+Path.GetFileName(salesFileDownload.ToString)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="CommentOut_7">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,318" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="354,125" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;sales path:  &quot;+GlobalVariables.Config(&quot;DownloadFiles&quot;)+Path.GetFileName(salesFileDownload.ToString)]" />
+                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="354,108" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;file name:   &quot;+Path.GetFileName(salesFileDownload.ToString)]" />
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <Assign sap:VirtualizedContainerService.HintSize="452,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[salesFileName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[Path.GetFileName(salesFileDownload.ToString)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,387" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="354,120" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[GlobalVariables.Config(&quot;SalesFolder&quot;)+DateTime.Now.ToString(&quot;dd/MM/yyyy&quot;)]" />
+                                <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[GlobalVariables.Config(&quot;SalesFolder&quot;)+DateTime.Now.ToString(&quot;dd/MM/yyyy&quot;)+&quot;\&quot;+Path.GetFileName(salesFileDownload.ToString)]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="354,182" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[salesFileDownload.ToString]" />
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <uix:NSelectItem DisplayName="Select Item 'Sales by Sales Category'" sap:VirtualizedContainerService.HintSize="452,189" sap2010:WorkflowViewState.IdRef="NSelectItem_4" Item="Discount Name" ScopeIdentifier="0619a668-f3af-4d00-a55a-49c24f2a1a94" Version="V3">
+                            <uix:NSelectItem.Items>
+                              <scg:List x:TypeArguments="x:String" Capacity="9">
+                                <x:String>Sales Category</x:String>
+                                <x:String>Dining Option</x:String>
+                                <x:String>Revenue Center</x:String>
+                                <x:String>Discount Name</x:String>
+                                <x:String>Service Area</x:String>
+                                <x:String>Service Type</x:String>
+                                <x:String>Server</x:String>
+                                <x:String>Sale Date</x:String>
+                                <x:String>Item Name</x:String>
+                              </scg:List>
+                            </uix:NSelectItem.Items>
+                            <uix:NSelectItem.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="383, 454, 168, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Sales Category'" FullSelectorArgument="&lt;webctrl class='tk-input-box' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;tk-selector&amp;gt;tk-dropdown&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-toggle&amp;gt;div&amp;gt;tk-input&amp;gt;div' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='tk-input-box' type='' parentid='single-spa-application:root' tag='DIV' aaname='' /&gt;" Guid="79ad9c92-16a2-4e2c-8a8e-573dd861cec4" ImageBase64="" InformativeScreenshot="9b9687ac01b8087c8c14787ad20fdfa6.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="383, 337, 236, 30" ElementType="Text" FriendlyName="'Sales by Sales Category'" FullSelectorArgument="&lt;webctrl aaname='Sales by Sales Category' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Sales by Sales Category' parentid='single-spa-application:root' tag='DIV' type='' class='card-heading tk-heading-4-bold' check:innerText='Sales by Sales Category' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NSelectItem.Target>
+                          </uix:NSelectItem>
+                          <uix:NSelectItem DisplayName="Select Item 'Sales Category'" sap:VirtualizedContainerService.HintSize="452,189" sap2010:WorkflowViewState.IdRef="NSelectItem_5" Item="Revenue Center" ScopeIdentifier="0619a668-f3af-4d00-a55a-49c24f2a1a94" Version="V3">
+                            <uix:NSelectItem.Items>
+                              <scg:List x:TypeArguments="x:String" Capacity="8">
+                                <x:String>Sales Category</x:String>
+                                <x:String>Dining Option</x:String>
+                                <x:String>Revenue Center</x:String>
+                                <x:String>Service Area</x:String>
+                                <x:String>Service Type</x:String>
+                                <x:String>Server</x:String>
+                                <x:String>Sale Date</x:String>
+                                <x:String>Item Name</x:String>
+                              </scg:List>
+                            </uix:NSelectItem.Items>
+                            <uix:NSelectItem.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" CvTextArea="590, 466, 84, 14" CvTextArgument="Sales Category" CvType="Text" DesignTimeRectangle="582, 454, 168, 36" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Sales Category'" FullSelectorArgument="&lt;webctrl class='tk-input-box' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;tk-selector&amp;gt;tk-dropdown&amp;gt;div&amp;gt;div&amp;gt;tk-dropdown-toggle&amp;gt;div&amp;gt;tk-input&amp;gt;div' idx='2' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='tk-input-box' type='' aaname='' parentid='single-spa-application:root' tag='DIV' /&gt;" Guid="50e4a237-5ee7-4434-9701-1122c5e4abea" ImageBase64="" InformativeScreenshot="82e5574aa443dc8172760dadd268bd83.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target CvElementArea="757, 452, 90, 40" CvTextArea="773, 465, 55, 16" CvTextArgument="Update" CvType="Button" DesignTimeRectangle="758, 454, 87, 36" ElementType="Button" FriendlyName="'Update'" FullSelectorArgument="&lt;webctrl aaname=' Update ' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button' parentid='single-spa-application:root' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' Update ' type='' parentid='single-spa-application:root' tag='BUTTON' class='update-button aml-noprint' check:innerText='Update' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NSelectItem.Target>
+                          </uix:NSelectItem>
+                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="3" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="452,139" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1f1e0906-7a9e-40a2-a0ea-3cb74d7a79e7" InformativeScreenshot="4f94359d0766bbecc42aa3a17b2477bc" Selector="&lt;webctrl aaname=' Update ' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button' parentid='single-spa-application:root' tag='BUTTON' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:Click.Target>
+                          </ui:Click>
+                          <ui:GetLastDownloadedFile FileResource="{x:Null}" IgnoreFiles="{x:Null}" Timeout="{x:Null}" DisplayName="Wait for Download" DownloadFolder="[System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]" File="[discountFileDownload]" sap:VirtualizedContainerService.HintSize="452,503" sap2010:WorkflowViewState.IdRef="GetLastDownloadedFile_2">
+                            <ui:GetLastDownloadedFile.Body>
+                              <ActivityAction>
+                                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,215" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="2" DisplayName="Click 'I'" sap:VirtualizedContainerService.HintSize="354,130" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition Position="Center">
+                                        <ui:CursorPosition.OffsetX>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetX>
+                                        <ui:CursorPosition.OffsetY>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetY>
+                                      </ui:CursorPosition>
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d9fa5a01-a057-40aa-b3ca-ee543d83404d" InformativeScreenshot="f90ecf566787f540a34e73d54cc41831" Selector="&lt;webctrl parentid='single-spa-application:root' parentname='file_download' tag='I' /&gt;">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                        <ui:Target.WaitForReady>
+                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                        </ui:Target.WaitForReady>
+                                      </ui:Target>
+                                    </ui:Click.Target>
+                                  </ui:Click>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:GetLastDownloadedFile.Body>
+                          </ui:GetLastDownloadedFile>
+                          <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[GlobalVariables.Config(&quot;DownloadFiles&quot;)+&quot;Discount-&quot;+Path.GetFileName(discountFileDownload.ToString)]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="452,191" sap2010:WorkflowViewState.IdRef="MoveFile_4" Path="[discountFileDownload.ToString]" />
+                          <Assign sap:VirtualizedContainerService.HintSize="452,122" sap2010:WorkflowViewState.IdRef="Assign_5">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[discountFileName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["Discount-"+Path.GetFileName(discountFileDownload.ToString)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll" sap:VirtualizedContainerService.HintSize="452,277" sap2010:WorkflowViewState.IdRef="NMouseScroll_1" InteractionMode="HardwareEvents" MovementUnits="10" Version="V3">
+                            <uix:NMouseScroll.SearchedElement>
+                              <uix:SearchedElement>
+                                <uix:SearchedElement.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="72, 193, 247, 830" DesignTimeScaleFactor="1" FriendlyName="'ReportsOverviewWeekly o…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='single-spa-application:rra-subnav-spa' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='single-spa-application:rra-subnav-spa' tag='DIV' class='h-full overflow-y-scroll' aaname='' check:innerText='Reports&amp;#xD;&amp;#xA;Overview&amp;#xD;&amp;#xA;Sales&amp;#xD;&amp;#xA;Sales summaryNEW&amp;#xD;&amp;#xA;Sales&amp;#xD;&amp;#xA;Sales breakdown&amp;#xD;&amp;#xA;Orders&amp;#xD;&amp;#xA;Order details&amp;#xD;&amp;#xA;Paid in total' /&gt;" Guid="34f253a7-b76a-434c-9131-5e596d0e1fdc" ImageBase64="" InformativeScreenshot="fd830eead11c55a85565816f83bf8f11.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="88, 213, 190, 24" ElementType="Text" FriendlyName="'Reports'" FullSelectorArgument="&lt;webctrl tag='H4' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H4' type='' class='ml-2 mb-2 font-semibold type-default text-default lg:mt-5' aaname='Reports' check:innerText='Reports' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:SearchedElement.Target>
+                                <uix:SearchedElement.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:SearchedElement.Timeout>
+                              </uix:SearchedElement>
+                            </uix:NMouseScroll.SearchedElement>
+                          </uix:NMouseScroll>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Accounts'" sap:VirtualizedContainerService.HintSize="452,197" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="0619a668-f3af-4d00-a55a-49c24f2a1a94" Version="V3">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="80, 849, 198, 40" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Accounts'" FullSelectorArgument="&lt;webctrl aria-label='Accounts' aria-role='button' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-label='Accounts' aria-role='button' tag='BUTTON' type='button' class='text-default outline-none focus-visible:shadow-focus my-0.5 w-full text-left no-underline pr-1 rounded flex items-center hover:bg-darken-4 pl-8' aaname='Accounts' check:innerText='Accounts' /&gt;" Guid="8838f44e-f8f4-491e-b69f-34be3d19f4ae" InformativeScreenshot="c29a4a95304221b04f235f997ab2ad5f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="112, 849, 162, 40" ElementType="Text" FriendlyName="'Accounts'" FullSelectorArgument="&lt;webctrl aaname='Accounts' parentid='single-spa-application:rra-subnav-spa' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Accounts' parentid='single-spa-application:rra-subnav-spa' tag='SPAN' type='' class='flex-1 flex-grow py-2 type-default' check:innerText='Accounts' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll" sap:VirtualizedContainerService.HintSize="452,277" sap2010:WorkflowViewState.IdRef="NMouseScroll_2" InteractionMode="HardwareEvents" MovementUnits="10" Version="V3">
+                            <uix:NMouseScroll.SearchedElement>
+                              <uix:SearchedElement>
+                                <uix:SearchedElement.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="72, 193, 247, 830" DesignTimeScaleFactor="1" FriendlyName="'ReportsOverviewWeekly o…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='single-spa-application:rra-subnav-spa' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='single-spa-application:rra-subnav-spa' tag='DIV' class='h-full overflow-y-scroll' aaname='' check:innerText='Reports&amp;#xD;&amp;#xA;Overview&amp;#xD;&amp;#xA;Sales&amp;#xD;&amp;#xA;Sales summaryNEW&amp;#xD;&amp;#xA;Sales&amp;#xD;&amp;#xA;Sales breakdown&amp;#xD;&amp;#xA;Orders&amp;#xD;&amp;#xA;Order details&amp;#xD;&amp;#xA;Paid in total' /&gt;" Guid="34f253a7-b76a-434c-9131-5e596d0e1fdc" ImageBase64="" InformativeScreenshot="fd830eead11c55a85565816f83bf8f11.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="88, 213, 190, 24" ElementType="Text" FriendlyName="'Reports'" FullSelectorArgument="&lt;webctrl tag='H4' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H4' type='' class='ml-2 mb-2 font-semibold type-default text-default lg:mt-5' aaname='Reports' check:innerText='Reports' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:SearchedElement.Target>
+                                <uix:SearchedElement.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:SearchedElement.Timeout>
+                              </uix:SearchedElement>
+                            </uix:NMouseScroll.SearchedElement>
+                          </uix:NMouseScroll>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Accounting by location'" sap:VirtualizedContainerService.HintSize="452,197" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="0619a668-f3af-4d00-a55a-49c24f2a1a94" Version="V3">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="124, 757, 150, 64" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Accounting by location'" FullSelectorArgument="&lt;webctrl aaname='Accounting by location' parentid='id_Accounts_menu' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Accounting by location' parentid='id_Accounts_menu' tag='SPAN' type='' class='flex-1 flex-grow py-2 type-default' check:innerText='Accounting by location' /&gt;" Guid="f5a8481f-2db7-46c5-9e92-5faf8b6c714e" InformativeScreenshot="172abd79f4c7b76b37f3eb23208504ee.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="112, 625, 162, 40" ElementType="Text" FriendlyName="'Accounts'" FullSelectorArgument="&lt;webctrl aaname='Accounts' parentid='single-spa-application:rra-subnav-spa' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Accounts' parentid='single-spa-application:rra-subnav-spa' tag='SPAN' type='' class='flex-1 flex-grow py-2 type-default' check:innerText='Accounts' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,294" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,190" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="354,105" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" Url="https://www.toasttab.com/restaurants/admin/reports/home#accounting" Version="V3" />
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                          </ui:CommentOut>
+                        </Sequence>
+                      </ActivityAction>
+                    </uix:NApplicationCard.Body>
+                    <uix:NApplicationCard.TargetApp>
+                      <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="c81052b4b39d9bed78cf3dc40b1d583c.jpg" Selector="&lt;html app='chrome.exe' title='Toast Home' /&gt;" Title="Toast Home" Url="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" />
+                    </uix:NApplicationCard.TargetApp>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NApplicationCard>
+                  <Assign sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[flagForCloseLocation]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="496,311" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[flagForCloseLocation]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <uix:NGoToUrl DelayAfter="4" DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="NGoToUrl_2" Url="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" Version="V3" />
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" DesignTimeRectangle="359, 476, 1184, 112" DesignTimeScaleFactor="1" FriendlyName="'You are'" FullSelectorArgument="&lt;webctrl class='tk-card-row' idx='2' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='tk-card-row' type='' parentid='single-spa-application:root' tag='DIV' aaname='' check:innerText='You are viewing:&amp;#xD;&amp;#xA;arrow_drop_down&amp;#xD;&amp;#xA;by&amp;#xD;&amp;#xA;arrow_drop_down&amp;#xD;&amp;#xA;Update' /&gt;" Guid="fd7daf3a-1ef5-4c86-9552-76e9bdfcc4dd" InformativeScreenshot="bab2e505bd1dab2326f82f87cc6199aa.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Toast Home' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CvTextArea="382, 451, 376, 16" CvTextArgument="Non-gratuity service charges are not included in the totals." CvType="Text" DesignTimeRectangle="383, 449, 1136, 18" ElementType="Text" FriendlyName="'Non-gratuity service'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;analytics-angular&amp;gt;aml-dashboard&amp;gt;div&amp;gt;aml-sales-breakdown&amp;gt;aml-report-view&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' isleaf='1' parentid='single-spa-application:root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' isleaf='1' parentid='single-spa-application:root' tag='DIV' class='' aaname=' Non-gratuity service charges are not included in the totals. ' check:innerText='Non-gratuity service charges are not included in the totals.' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="737d33aaf9642ce22a8405f4592b7a65.jpg" Selector="&lt;html app='chrome.exe' title='Toast Home' /&gt;" Title="Toast Home" Url="https://www.toasttab.com/restaurants/admin/analytics/home/sales/breakdown" />
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>

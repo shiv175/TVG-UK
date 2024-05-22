@@ -1,0 +1,13 @@
+Sales Category,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+Spirits,,18,139.99,0,139.99,28.01,
+Spirits,Carrubo Public,18,139.99,0,139.99,28.01,
+Beer,,79,432.33,0,432.33,86.67,
+Beer,Carrubo Public,79,432.33,0,432.33,86.67,
+Wine,,16,205.4,0,205.4,41.1,
+Wine,Carrubo Public,16,205.4,0,205.4,41.1,
+Cocktails,,29,189.16,0,189.16,37.84,
+Cocktails,Carrubo Public,29,189.16,0,189.16,37.84,
+Non-Alcoholic,,4,15.41,0,15.41,3.09,
+Non-Alcoholic,Carrubo Public,4,15.41,0,15.41,3.09,
+Food,,2,7.5,0,7.5,1.5,
+Food,Carrubo Public,2,7.5,0,7.5,1.5,

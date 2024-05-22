@@ -1,0 +1,7 @@
+Sales Category,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+Spirits,,2,16.66,0,16.66,3.34,
+Spirits,Arches Public,2,16.66,0,16.66,3.34,
+No Sales Category,,10,56.67,0,56.67,11.33,
+No Sales Category,Arches Public,10,56.67,0,56.67,11.33,
+Wine,,1,37.5,0,37.5,7.5,
+Wine,Arches Public,1,37.5,0,37.5,7.5,

@@ -1,0 +1,13 @@
+Sales Category,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+Food,,92,1025.39,8.34,1033.73,205.11,
+Food,In Horto Public,92,1025.39,8.34,1033.73,205.11,
+Beer,,6,25.84,0,25.84,5.16,
+Beer,In Horto Public,6,25.84,0,25.84,5.16,
+Non-Alcoholic,,18,57.73,0,57.73,11.57,
+Non-Alcoholic,In Horto Public,18,57.73,0,57.73,11.57,
+Wine,,16,366.66,0,366.66,73.34,
+Wine,In Horto Public,16,366.66,0,366.66,73.34,
+Cocktails,,7,69.17,0,69.17,13.83,
+Cocktails,In Horto Public,7,69.17,0,69.17,13.83,
+Spirits,,1,10,0,10,2,
+Spirits,In Horto Public,1,10,0,10,2,

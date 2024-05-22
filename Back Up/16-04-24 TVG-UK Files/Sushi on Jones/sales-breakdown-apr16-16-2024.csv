@@ -1,0 +1,9 @@
+Sales Category,Revenue Center,Item Qty,Net Sales,Discount Amount,Gross Sales,Tax Amount
+Non-Alcoholic,,1,2.08,0,2.08,0.42,
+Non-Alcoholic,SOJ Public,1,2.08,0,2.08,0.42,
+Food,,16,850.83,0,850.83,170.17,
+Food,SOJ Public,16,850.83,0,850.83,170.17,
+Cocktails,,4,53.34,0,53.34,10.66,
+Cocktails,SOJ Public,4,53.34,0,53.34,10.66,
+No Sales Category,,2,13.33,0,13.33,2.67,
+No Sales Category,SOJ Public,2,13.33,0,13.33,2.67,
